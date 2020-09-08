@@ -24,15 +24,32 @@
           <% if current_user == permit.user %>
               <%= link_to "[ edit ]", edit_permit_path(permit), class: "card-edit-link" %>
               <%= link_to "[ delete ]", permit_path(permit), method: :delete, data: { confirm: "Are you sure?" }, class: "card-remove-link" %>
+          <% else %>
+            <%= link_to "[ book permit ]", new_permit_booking_path(permit) %>
           <% end %>
-        <br><%= permit.description %></p>
-        </td>
+        <br><%= permit.description %></p></td>
+
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <%= link_to '[ list a permit for rent ]', new_permit_path %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

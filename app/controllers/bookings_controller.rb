@@ -26,7 +26,7 @@ before_action :set_booking, only: [:show, :edit, :update, :destroy]
       render :new
     end
   end
-  
+
   def update
     if @booking.update(booking_params)
       redirect_to @booking, notice: 'Booking was successfully updated.'
