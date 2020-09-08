@@ -14,6 +14,7 @@ class PermitsController < ApplicationController
   def create
     @permit = Permit.new(permit_params)
 
+
     if @permit.save
       redirect_to @permit, notice: "Permit was successfully listed!"
     else
@@ -34,7 +35,7 @@ class PermitsController < ApplicationController
   end
 
   def permit_params
-    params.require(:permit).permit(:name, :description, :price, :location, :available, :user_id)
+    params.require(:permit).permit(:name, :description, :price, :location)
   end
 
 end

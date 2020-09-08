@@ -10,16 +10,33 @@
   </thead>
 
   <tbody>
-    <% @permits.each do |universe| %>
+    <% @permits.each do |permit| %>
       <tr>
         <td><%= permit.name %></td>
-        <td><%= link_to 'Show', permit %></td>
+        <td><%= link_to 'Show', permit_path(permit) %></td>
         <td><%= link_to 'Edit', edit_permit_path(permit) %></td>
         <td><%= link_to 'Destroy', permit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<%= link_to 'List a permit', new_permit_path %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
