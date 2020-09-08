@@ -1,0 +1,25 @@
+<div>
+  <h1>My Bookings</h1>
+  
+    <tbody>
+    <% @bookings.each do |booking| %>
+      <tr>
+        <td><%= booking.total_price %></td>
+        <td><%= booking.start_date %></td>
+        <td><%= booking.end_date %></td>
+        <td><%= booking.status %></td>
+        <td><%= link_to 'Show', booking %></td>
+
+        <% if booking.user == current_user %>
+          <td><%= link_to 'Edit', edit_booking_path(booking) %></td>
+        <% end %>
+
+        <% if booking.user == current_user %>
+          <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+
+      </tr>
+    <% end %>
+  </tbody>
+
+</div>
