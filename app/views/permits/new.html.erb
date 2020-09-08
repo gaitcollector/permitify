@@ -1,0 +1,15 @@
+<div class="container">
+  <h1>List a new permit</h1>
+
+  <div id="new-permit-form">
+    <%= simple_form_for [@user, @permit] do |f|%>
+      <%= f.input :name %>
+      <%= f.input :description %>
+      <%= f.input :price %>
+      <%= f.input :location %>
+      <%= f.button :submit, value: 'List permit', class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+
+  <%= link_to 'cancel', permits_path %>
+</div>
