@@ -1,5 +1,5 @@
 
-<h1>Permits menu</h1>
+<h1>Permit Listings</h1>
 
 <table class="permits">
   <thead>
@@ -12,16 +12,90 @@
   <tbody>
     <% @permits.each do |permit| %>
       <tr>
-        <td><%= permit.name %></td>
-        <td><%= link_to 'Show', permit_path(permit) %></td>
-        <td><%= link_to 'Edit', edit_permit_path(permit) %></td>
-        <td><%= link_to 'Destroy', permit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+        <td><p><%= link_to permit.name, permit_path(permit) %> available now:
+
+        <% if permit.available %>
+          <%= "yes" %>
+        <% else %>
+          <%= "no" %>
+          <% end %>
+
+          <% if current_user == permit.user %>
+              <%= link_to "[ edit ]", edit_permit_path(permit), class: "card-edit-link" %>
+              <%= link_to "[ delete ]", permit_path(permit), method: :delete, data: { confirm: "Are you sure?" }, class: "card-remove-link" %>
+          <% end %>
+        <br><%= permit.description %></p>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= link_to 'List a permit', new_permit_path %>
+<%= link_to '[ list a permit for rent ]', new_permit_path %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

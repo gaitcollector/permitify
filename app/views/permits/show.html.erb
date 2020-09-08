@@ -8,16 +8,20 @@
   <div class="row">
     <div class="col">
       <div class="cards">
-        <% @permits.each do |permit| %>
+
           <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3))">
-            <%= permit.name %>
+              <p> <%= @permit.name %><p>
+              <p> <%= @permit.description %><p>
+              <p> <%= @permit.price %><p>
+              <p> <%= @permit.location %><p>
+
 
             <% if current_user == @permit.user %>
-              <%= link_to "+", character_path(permit), method: :delete, data: { confirm: "Are you sure?" }, class: "card-remove-link" %>
+              <%= link_to "[ delete ]", permit_path(@permit), method: :delete, data: { confirm: "Are you sure?" }, class: "card-remove-link" %>
             <% end %>
 
           </div>
-        <% end %>
+
       </div>
     </div>
   </div>
