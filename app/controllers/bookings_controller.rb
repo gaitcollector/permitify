@@ -9,6 +9,7 @@ before_action :set_booking, only: [:show, :edit, :update, :destroy]
 
   def new
     @booking = Booking.new
+    @permit = Permit.find(params[:permit_id])
   end
 
   def edit
@@ -41,7 +42,7 @@ before_action :set_booking, only: [:show, :edit, :update, :destroy]
 
   private
 
-  def set_bookings
+  def set_booking
     @bookings = Booking.find(params[:id])
   end
 
