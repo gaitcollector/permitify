@@ -1,0 +1,26 @@
+
+<h1>Permits menu</h1>
+
+<table class="permits">
+  <thead>
+    <tr>
+      <th></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @permits.each do |universe| %>
+      <tr>
+        <td><%= permit.name %></td>
+        <td><%= link_to 'Show', permit %></td>
+        <td><%= link_to 'Edit', edit_permit_path(permit) %></td>
+        <td><%= link_to 'Destroy', permit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+
