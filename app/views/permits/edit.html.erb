@@ -2,7 +2,7 @@
   <h1>Update Permit</h1>
 
   <div id="edit-permit-form">
-    <%= simple_form_for [current_user, @permit] do |f|%>
+    <%= simple_form_for @permit do |f|%>
       <%= f.input :name %>
       <%= f.input :description %>
       <%= f.input :price %>
