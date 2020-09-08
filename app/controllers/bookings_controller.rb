@@ -19,9 +19,10 @@ before_action :set_booking, only: [:show, :edit, :update, :destroy]
     @booking = Booking.new(booking_params)
     @booking.user = current_user
     @booking.permit = Permit.find(params[:permit_id])
+    @booking.total_price = calculated_price
 
     if @booking.save
-      redirect_to @booking, notice: 'Booking was successfully created.'
+      redirect_to booking_path(@booking), notice: 'Booking was successfully created.'
     else
       render :new
     end
@@ -40,10 +41,14 @@ before_action :set_booking, only: [:show, :edit, :update, :destroy]
     redirect_to bookings_url, notice: 'Booking was successfully deleted.'
   end
 
+  def calculated_price
+    (@booking.permit.price * ( @booking.end_date - @booking.start_date )).to_i
+  end
+
   private
 
   def set_booking
-    @bookings = Booking.find(params[:id])
+    @booking = Booking.find(params[:id])
   end
 
   def booking_params
