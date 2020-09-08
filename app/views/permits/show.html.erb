@@ -19,6 +19,7 @@
             <% if current_user == @permit.user %>
               <%= link_to "[ delete ]", permit_path(@permit), method: :delete, data: { confirm: "Are you sure?" }, class: "card-remove-link" %>
             <% end %>
+            <%= link_to "[ book permit ]", new_permit_booking_path(@permit) %>
 
           </div>
 

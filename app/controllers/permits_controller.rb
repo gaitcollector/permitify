@@ -22,6 +22,21 @@ class PermitsController < ApplicationController
     end
   end
 
+  def edit
+    @permit = Permit.find(params[:id])
+  end
+
+  def update
+    # if @permit.user = current_user
+      @permit = Permit.find(params[:id])
+      if @permit.update(permit_params)
+        redirect_to @permit, notice: "Permit was successfully updated!"
+      else
+        render :edit
+      end
+
+  end
+
   def destroy
     @permit = Permit.find(params[:id])
     @permit.destroy
