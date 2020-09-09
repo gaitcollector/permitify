@@ -4,11 +4,13 @@
     <tbody>
     <% @bookings.each do |booking| %>
       <tr>
-        <td><%= booking.total_price %></td>
-        <td><%= booking.start_date %></td>
-        <td><%= booking.end_date %></td>
-        <td><%= booking.status %></td>
-        <td><%= link_to 'Show', booking %></td>
+        <td><%= booking.permit.name %></td><br>
+        <td><%= booking.permit.description %></td><br>
+        <td><%= booking.total_price %></td><br>
+        <td><%= booking.start_date %></td><br>
+        <td><%= booking.end_date %></td><br>
+        <td><%= booking.status %></td><br>
+        <td><%= link_to 'Show', booking %></td><br>
 
         <% if booking.user == current_user %>
           <td><%= link_to 'Edit', edit_booking_path(booking) %></td>
