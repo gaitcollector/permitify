@@ -20,9 +20,10 @@ before_action :set_booking, only: [:show, :edit, :update, :destroy]
     @booking.user = current_user
     @booking.permit = Permit.find(params[:permit_id])
     @booking.total_price = calculated_price
+    @booking.status = "Booked"
 
     if @booking.save
-      redirect_to booking_path(@booking), notice: 'Booking was successfully created.'
+      redirect_to dashboard_path, notice: 'Booking was successfully created.'
     else
       render :new
     end
