@@ -12,8 +12,17 @@
   <tbody>
     <% @permits.each do |permit| %>
       <tr>
+                <td><p><%= link_to permit.name, permit_path(permit) %></p>
 
-        <td><p><%= link_to permit.name, permit_path(permit) %> available now:
+                <% if permit.photo.attached? %>
+
+          <p><%= cl_image_tag permit.photo.key, height: 100, width: 100, crop: :fill %></p>
+
+        <% else %>
+
+          <p><img src="https://image.shutterstock.com/image-vector/picture-vector-icon-no-image-260nw-1350441335.jpg" class = "img-thumbnail" style="width:100px;height:100px"></p>
+        <% end  %>
+                available now:
 
         <% if permit.available %>
           <%= "yes" %>
@@ -26,6 +35,7 @@
               <%= link_to "[ delete ]", permit_path(permit), method: :delete, data: { confirm: "Are you sure?" }, class: "card-remove-link" %>
           <% else %>
             <%= link_to "[ book permit ]", new_permit_booking_path(permit) %>
+            <%= link_to 'Back', permits_path %>
           <% end %>
         <br><%= permit.description %></p></td>
 
