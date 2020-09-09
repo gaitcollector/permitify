@@ -35,7 +35,6 @@
               <%= link_to "[ delete ]", permit_path(permit), method: :delete, data: { confirm: "Are you sure?" }, class: "card-remove-link" %>
           <% else %>
             <%= link_to "[ book permit ]", new_permit_booking_path(permit) %>
-            <%= link_to 'Back', permits_path %>
           <% end %>
         <br><%= permit.description %></p></td>
 
@@ -45,6 +44,7 @@
 </table>
 
 <%= link_to '[ list a permit for rent ]', new_permit_path %>
+<%= link_to 'Back', root_path %>
 
 
 
