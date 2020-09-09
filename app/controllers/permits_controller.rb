@@ -50,7 +50,7 @@ class PermitsController < ApplicationController
   end
 
   def permit_params
-    params.require(:permit).permit(:name, :description, :price, :location, :available)
+    params.require(:permit).permit(:name, :description, :price, :location, :available, :photo)
   end
 
 end
