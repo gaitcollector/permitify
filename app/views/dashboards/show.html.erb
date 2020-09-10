@@ -25,3 +25,34 @@
   </tbody>
 
 </div>
+
+<div>
+  <h1>My Requests</h1>
+
+    <tbody>
+    <% @requests.each do |booking| %>
+      <tr>
+        <td>Permit: <%= booking.permit.name %></td><br>
+        <td>Description: <%= booking.permit.description %></td><br>
+        <td>Total Price: $<%= booking.total_price %></td><br>
+        <td>Start Date: <%= booking.start_date %></td><br>
+        <td>End Date: <%= booking.end_date %></td><br>
+        <td>Booking Status: <%= booking.status %></td><br>
+        <td><%= link_to 'Show', booking %></td>
+
+
+
+
+          <td><%= link_to 'Accept', booking_path(booking, booking: {status: "Booked"}), method: :patch, data: { confirm: 'Are you sure?' } %></td>
+
+
+          <% if booking.status != "Declined"%>
+          <td><%= link_to 'Decline', booking_path(booking, booking: {status: "Declined"}), method: :patch, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+
+
+      </tr>
+    <% end %>
+  </tbody>
+
+</div>
