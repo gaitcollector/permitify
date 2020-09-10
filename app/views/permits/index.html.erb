@@ -20,51 +20,55 @@
     </tr>
   </thead>
 
-  <tbody>
-    <% @permits.each do |permit| %>
-      <tr>
-                <td><p><%= link_to permit.name, permit_path(permit) %></p>
 
-                <% if permit.photo.attached? %>
-
-          <p><%= cl_image_tag permit.photo.key, height: 100, width: 100, crop: :fill %></p>
-
+    
+<div class="cards">
+  <% @permits.each do |permit| %>
+    <div class="card" style="width: 18rem;">
+      <%= link_to permit.name, permit_path(permit) %>
+        <% if permit.photo.attached? %>
+          <%= cl_image_tag permit.photo.key, height: 100, width: 100, crop: :fill %>
         <% else %>
-
-          <p><img src="https://image.shutterstock.com/image-vector/picture-vector-icon-no-image-260nw-1350441335.jpg" class = "img-thumbnail" style="width:100px;height:100px"></p>
+          <img src="https://image.shutterstock.com/image-vector/picture-vector-icon-no-image-260nw-1350441335.jpg" class = "img-thumbnail" style="width:100px;height:100px">
         <% end  %>
+        </tr>
+        <div class="card-body">
+        <table>
+          <tbody>
+            <tr>
+              <th>Permit:</th><td><%= permit.name %></th>
+            </tr>
+            <tr>
+              <th>available now:<th>
+            <td>
+              <% if permit.available %>
+                <%= "yes" %>
+              <% else %>
+                <%= "no" %>
+              <% end %>
+            </td>
 
-          Available now:
-        <% if permit.available %>
-          <%= "yes" %>
-        <% else %>
-          <%= "no" %>
-        <% end %>
-
-        <br>Location:
-        <%= permit.location %></p>
-
-        <br>Description:
-        <%= permit.description %></p>
-        Perks:
-        <br><% permit.perks.each do |perk| %>
-          <ul><li><%= perk %></li></ul>
-        <% end %>
+          </tbody>
+        <table>
 
         <% if current_user == permit.user %>
-          <br><%= link_to "[ edit ]", edit_permit_path(permit), class: "card-edit-link" %>
-          <%= link_to "[ delete ]", permit_path(permit), method: :delete, data: { confirm: "Are you sure?" }, class: "card-remove-link" %>
+          <%= link_to " edit ", edit_permit_path(permit), class: "card-edit-link" %>
+          <%= link_to " delete ", permit_path(permit), method: :delete, data: { confirm: "Are you sure?" }, class: "card-remove-link" %>
         <% else %>
-          <%= link_to "[ book permit ]", new_permit_booking_path(permit) %>
+          <%= link_to " book permit ", new_permit_booking_path(permit) %>
         <% end %>
-
-      </tr>
+      <%= permit.description %>
+      </div>
     <% end %>
-  </tbody>
-</table>
+</div>
 
 <%= link_to '[ list a permit for rent ]', new_permit_path %>
 <%= link_to '[ back to home ]', root_path %>
+
+<div id="map"
+     style="width: 100%; height: 600px;"
+     data-markers="<%= @markers.to_json %>"
+     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
 
 
 

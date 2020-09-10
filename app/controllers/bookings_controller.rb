@@ -20,10 +20,10 @@ before_action :set_booking, only: [:show, :edit, :update, :destroy]
     @booking.user = current_user
     @booking.permit = Permit.find(params[:permit_id])
     @booking.total_price = calculated_price
-    @booking.status = "Booked"
+    @booking.status = "Awaiting"
 
     if @booking.save
-      redirect_to dashboard_path, notice: 'Booking was successfully created.'
+      redirect_to dashboard_path, notice: 'Booking request was created.'
     else
       render :new
     end
@@ -39,7 +39,7 @@ before_action :set_booking, only: [:show, :edit, :update, :destroy]
 
   def destroy
     @booking.destroy
-    redirect_to bookings_url, notice: 'Booking was successfully deleted.'
+    redirect_to dashboard_url, notice: 'Booking was successfully deleted.'
   end
 
   def calculated_price
