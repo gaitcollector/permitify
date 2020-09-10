@@ -1,6 +1,14 @@
 class PermitsController < ApplicationController
   def index
     @permits = Permit.all
+
+    @markers = @permits.geocoded.map do |permit|
+      {
+        lat: permit.latitude,
+        lng: permit.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { permit: permit }),
+      }
+    end
   end
 
   def show
