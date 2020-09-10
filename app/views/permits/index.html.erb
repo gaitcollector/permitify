@@ -1,6 +1,27 @@
 
 <h1>Permit Listings</h1>
 
+ <%= form_tag permits_path, class:"py-3", method: :get do %>
+
+      Perks: <%= text_field_tag :query,
+        params[:perks],
+        class: "form-control",
+        placeholder: "Search by Perks"
+      %>
+      <%= submit_tag "Search", class: "btn btn-primary" %>
+    <% end %>
+
+
+<table class="permits">
+  <thead>
+    <tr>
+      <th></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+
+    
 <div class="cards">
   <% @permits.each do |permit| %>
     <div class="card" style="width: 18rem;">
@@ -10,7 +31,7 @@
         <% else %>
           <img src="https://image.shutterstock.com/image-vector/picture-vector-icon-no-image-260nw-1350441335.jpg" class = "img-thumbnail" style="width:100px;height:100px">
         <% end  %>
-
+        </tr>
         <div class="card-body">
         <table>
           <tbody>

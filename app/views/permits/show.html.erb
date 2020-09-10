@@ -22,10 +22,13 @@
             <% end  %>
 
 
-              <p> <%= @permit.name %><p>
-              <p> <%= @permit.description %><p>
-              <p> <%= @permit.price %><p>
-              <p> <%= @permit.location %><p>
+              <p>Permit: <%= @permit.name %></p>
+              <p>Description: <%= @permit.description %></p>
+              Perks: <% @permit.perks.each do |perk| %>
+                 <ul><li><%= perk %></li></ul>
+              <% end %>
+              <p>Price (per day):  $<%= @permit.price %></p>
+              <p>Location:  <%= @permit.location %></p>
 
 
             <% if current_user == @permit.user %>

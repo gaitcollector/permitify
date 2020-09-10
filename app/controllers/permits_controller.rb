@@ -1,6 +1,13 @@
 class PermitsController < ApplicationController
   def index
-    @permits = Permit.all
+
+    if params[:query].present?
+      sql_query = "permits.perks @@ :query"
+      @permits = Permit.search_by_perks(params[:query])
+
+    else
+      @permits = Permit.all
+    end
 
     @markers = @permits.geocoded.map do |permit|
       {
@@ -11,16 +18,21 @@ class PermitsController < ApplicationController
     end
   end
 
+
+
   def show
     @permit = Permit.find(params[:id])
   end
 
   def new
     @permit = Permit.new
+
   end
 
   def create
     @permit = Permit.new(permit_params)
+    params[:permit][:perks].each {|perk| @permit.perks << perk }
+
     @permit.user = current_user
     respond_to do |format|
       if @permit.save
@@ -31,6 +43,7 @@ class PermitsController < ApplicationController
         format.json { render json: @permit.errors, status: :unprocessable_entity }
       end
     end
+
   end
 
   def edit
@@ -67,7 +80,7 @@ class PermitsController < ApplicationController
   end
 
   def permit_params
-    params.require(:permit).permit(:name, :description, :price, :location, :available, :photo, :location)
+    params.require(:permit).permit(:name, :description, :perks, :price, :location, :available, :photo)
   end
 
 end
