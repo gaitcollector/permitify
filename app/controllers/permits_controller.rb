@@ -1,7 +1,24 @@
 class PermitsController < ApplicationController
   def index
-    @permits = Permit.all
+
+    if params[:query].present?
+      sql_query = "permits.perks @@ :query"
+      @permits = Permit.search_by_perks(params[:query])
+
+    else
+      @permits = Permit.all
+    end
+
+    @markers = @permits.geocoded.map do |permit|
+      {
+        lat: permit.latitude,
+        lng: permit.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { permit: permit })
+      }
+    end
   end
+
+
 
   def show
     @permit = Permit.find(params[:id])
@@ -9,17 +26,24 @@ class PermitsController < ApplicationController
 
   def new
     @permit = Permit.new
+
   end
 
   def create
     @permit = Permit.new(permit_params)
-    @permit.user = current_user
+    params[:permit][:perks].each {|perk| @permit.perks << perk }
 
-    if @permit.save
-      redirect_to @permit, notice: "Permit was successfully listed!"
-    else
-      render :new
+    @permit.user = current_user
+    respond_to do |format|
+      if @permit.save
+        format.html { redirect_to @permit, notice: 'Permit was successfully listed!' }
+        format.json { render :show, status: :created, location: @permit }
+      else
+        format.html { render :new }
+        format.json { render json: @permit.errors, status: :unprocessable_entity }
+      end
     end
+
   end
 
   def edit
@@ -27,20 +51,26 @@ class PermitsController < ApplicationController
   end
 
   def update
-    # if @permit.user = current_user
-      @permit = Permit.find(params[:id])
+    @permit.user = current_user
+    @permit = Permit.find(params[:id])
+    respond_to do |format|
       if @permit.update(permit_params)
-        redirect_to @permit, notice: "Permit was successfully updated!"
+        format.html { redirect_to @permit, notice: 'Permit was successfully updated!' }
+        format.json { render :show, status: :ok, location: @permit }
       else
-        render :edit
+        format.html { render :edit }
+        format.json { render json: @permit.errors, status: :unprocessable_entity }
       end
-
+    end
   end
 
   def destroy
     @permit = Permit.find(params[:id])
     @permit.destroy
-    redirect_to @permit, notice: "Permit was successfully deleted."
+    respond_to do |format|
+      format.html { redirect_to @permit, notice: 'Permit was successfully deleted!' }
+      format.json { head :no_content }
+    end
   end
 
   private
@@ -50,7 +80,7 @@ class PermitsController < ApplicationController
   end
 
   def permit_params
-    params.require(:permit).permit(:name, :description, :price, :location, :available, :photo)
+    params.require(:permit).permit(:name, :description, :perks, :price, :location, :available, :photo)
   end
 
 end
