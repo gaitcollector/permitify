@@ -39,7 +39,7 @@ before_action :set_booking, only: [:show, :edit, :update, :destroy]
 
   def destroy
     @booking.destroy
-    redirect_to bookings_url, notice: 'Booking was successfully deleted.'
+    redirect_to dashboard_url, notice: 'Booking was successfully deleted.'
   end
 
   def calculated_price
