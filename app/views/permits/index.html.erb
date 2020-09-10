@@ -1,6 +1,17 @@
 
 <h1>Permit Listings</h1>
 
+ <%= form_tag permits_path, class:"py-3", method: :get do %>
+
+      Perks: <%= text_field_tag :query,
+        params[:perks],
+        class: "form-control",
+        placeholder: "Search by Perks"
+      %>
+      <%= submit_tag "Search", class: "btn btn-primary" %>
+    <% end %>
+
+
 <table class="permits">
   <thead>
     <tr>
@@ -22,21 +33,30 @@
 
           <p><img src="https://image.shutterstock.com/image-vector/picture-vector-icon-no-image-260nw-1350441335.jpg" class = "img-thumbnail" style="width:100px;height:100px"></p>
         <% end  %>
-                available now:
 
+          Available now:
         <% if permit.available %>
           <%= "yes" %>
         <% else %>
           <%= "no" %>
-          <% end %>
+        <% end %>
 
-          <% if current_user == permit.user %>
-              <%= link_to "[ edit ]", edit_permit_path(permit), class: "card-edit-link" %>
-              <%= link_to "[ delete ]", permit_path(permit), method: :delete, data: { confirm: "Are you sure?" }, class: "card-remove-link" %>
-          <% else %>
-            <%= link_to "[ book permit ]", new_permit_booking_path(permit) %>
-          <% end %>
-        <br><%= permit.description %></p></td>
+        <br>Location:
+        <%= permit.location %></p>
+
+        <br>Description:
+        <%= permit.description %></p>
+        Perks:
+        <br><% permit.perks.each do |perk| %>
+          <ul><li><%= perk %></li></ul>
+        <% end %>
+
+        <% if current_user == permit.user %>
+          <br><%= link_to "[ edit ]", edit_permit_path(permit), class: "card-edit-link" %>
+          <%= link_to "[ delete ]", permit_path(permit), method: :delete, data: { confirm: "Are you sure?" }, class: "card-remove-link" %>
+        <% else %>
+          <%= link_to "[ book permit ]", new_permit_booking_path(permit) %>
+        <% end %>
 
       </tr>
     <% end %>

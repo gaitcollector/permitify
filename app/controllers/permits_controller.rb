@@ -1,7 +1,20 @@
 class PermitsController < ApplicationController
   def index
-    @permits = Permit.all
+        if params[:query].present?
+      sql_query = " \
+        permits.name @@ :query \
+        OR permits.description @@ :query \
+        OR permits.location @@ :query \
+        OR permits.perks @@ :query
+      "
+      @permits = Permit.search_by_perks(params[:query])
+
+    else
+      @permits = Permit.all
+    end
   end
+
+
 
   def show
     @permit = Permit.find(params[:id])
@@ -9,10 +22,13 @@ class PermitsController < ApplicationController
 
   def new
     @permit = Permit.new
+
   end
 
   def create
     @permit = Permit.new(permit_params)
+    params[:permit][:perks].each {|perk| @permit.perks << perk }
+
     @permit.user = current_user
 
     if @permit.save
@@ -20,6 +36,7 @@ class PermitsController < ApplicationController
     else
       render :new
     end
+
   end
 
   def edit
@@ -50,7 +67,7 @@ class PermitsController < ApplicationController
   end
 
   def permit_params
-    params.require(:permit).permit(:name, :description, :price, :location, :available, :photo)
+    params.require(:permit).permit(:name, :description, :perks, :price, :location, :available, :photo)
   end
 
 end

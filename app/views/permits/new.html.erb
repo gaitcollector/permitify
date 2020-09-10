@@ -5,13 +5,14 @@
     <%= simple_form_for [@user, @permit] do |f|%>
       <%= f.input :name %>
       <%= f.input :description %>
+      <%= f.input :perks, as: :check_boxes, collection: Permit::PERKS, input_html: { multiple: true }, include_hidden: false %>
       <%= f.input :price %>
       <%= f.input :location %>
       <%= f.input :available %>
       <%= f.input :photo, as: :file %>
       <%= f.button :submit, value: 'List permit', class: 'btn btn-primary' %>
     <% end %>
-  </div>
-
+  </div
+>
   <%= link_to 'cancel', permits_path %>
 </div>
