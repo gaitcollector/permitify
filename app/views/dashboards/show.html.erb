@@ -1,27 +1,39 @@
 <div>
   <h1>My Bookings</h1>
 
-    <tbody>
+  <div class="cards">
     <% @bookings.each do |booking| %>
-      <tr>
-        <td>Permit: <%= booking.permit.name %></td><br>
-        <td>Description: <%= booking.permit.description %></td><br>
-        <td>Total Price: $<%= booking.total_price %></td><br>
-        <td>Start Date: <%= booking.start_date %></td><br>
-        <td>End Date: <%= booking.end_date %></td><br>
-        <td>Booking Status: <%= booking.status %></td><br>
-        <td><%= link_to 'Show', booking %></td>
 
-        <% if booking.user == current_user %>
-          <td><%= link_to 'Edit', edit_booking_path(booking) %></td>
-        <% end %>
+      <div class="card" style="width: 18rem;">
+        <% if booking.permit.photo.attached? %>
+          <%= cl_image_tag booking.permit.photo.key, height: 300, width: 400, crop: :fill %>
+        <% else %>
+          <img class = "default-img-full" src="https://image.shutterstock.com/image-vector/picture-vector-icon-no-image-260nw-1350441335.jpg", height: 300, width: 300, crop: :fill>
+        <% end  %>
 
-        <% if booking.user == current_user %>
-          <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
+        <div class="card-body">
+          <tbody>
+            <tr>
+              <td>Permit: <%= booking.permit.name %></td>
+              <td>Description: <%= booking.permit.description %></td>
+              <td>Total Price: $<%= booking.total_price %></td>
+              <td>Start Date: <%= booking.start_date %></td>
+              <td>End Date: <%= booking.end_date %></td>
+              <td>Booking Status: <%= booking.status %></td>
+            </tr>
+          </tbody>
 
-      </tr>
+          </br>
+
+            <%= link_to 'Show', booking %> |
+            <% if booking.user == current_user %>
+              <td><%= link_to 'Edit', edit_booking_path(booking) %></td>
+            <% end %> |
+            <% if booking.user == current_user %>
+              <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% end %>
+        </div>
+      </div>
     <% end %>
-  </tbody>
-
+  </div>
 </div>
