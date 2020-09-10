@@ -1,14 +1,13 @@
 
 <h1>Permit Listings</h1>
-
-  <%= form_tag permits_path, class:"py-3", method: :get do %>
-    Perks: <%= text_field_tag :query,
-      params[:perks],
-      class: "form-control",
-      placeholder: "Search by Perks"
-    %>
-    <%= submit_tag "Search", class: "btn btn-primary" %>
+<div class="perks-links">
+  <% Permit::PERKS.each do |perk| %>
+    <p><%= link_to "Permits with '#{perk}' Perks", "/permits?query=#{perk}&commit=Search" %></p>
   <% end %>
+</div>
+
+
+
 
 
 
@@ -26,10 +25,17 @@
         <table>
           <tbody>
             <tr>
-              <th>Permit:</th><td><%= permit.name %></th>
+              <th>Permit:</th><td><%= permit.name %></td>
             </tr>
-            <tr>
-              <th>available now:<th>
+              </tr>
+              <th>Description:</th><td><%= permit.description %></td></tr>
+              <th>Perks:</th><td>
+                <% permit.perks.each do |perk| %>
+                 <ul><li><%= perk %></li></ul>
+              <% end %>
+              </td>
+              </tr>
+              <th>Available now:</th>
             <td>
               <% if permit.available %>
                 <%= "yes" %>
@@ -46,7 +52,7 @@
         <% else %>
           <%= link_to " book permit ", new_permit_booking_path(permit) %>
         <% end %>
-        <%= permit.description %>
+
       </div>
     </div>
   <% end %>
