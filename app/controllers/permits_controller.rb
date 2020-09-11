@@ -18,8 +18,6 @@ class PermitsController < ApplicationController
     end
   end
 
-
-
   def show
     @permit = Permit.find(params[:id])
   end
