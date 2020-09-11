@@ -53,6 +53,6 @@ before_action :set_booking, only: [:show, :edit, :update, :destroy]
   end
 
   def booking_params
-    params.require(:booking).permit(:total_price, :start_date, :end_date, :status)
+    params.require(:booking).permit(:total_price, :start_date, :end_date, :status, :photo)
   end
 end
