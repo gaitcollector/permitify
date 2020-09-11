@@ -1,24 +1,37 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Start Date:</strong>
-  <%= @booking.start_date %>
-</p>
+<div class="container">
+  <h1>Booking Detail</h1>
+  <p id="notice"><%= notice %></p>
+  <div class="card border-success m-5" style="max-width: 18rem;">
+      <% if @booking.permit.photo.attached? %>
+        <%= cl_image_tag @booking.permit.photo.key, height: 100, width: 100, crop: :fill %>
+      <% else %>
+        <img class="booking-show-img" src="https://image.shutterstock.com/image-vector/picture-vector-icon-no-image-260nw-1350441335.jpg", height: 100, width: 100, crop: :fill>
+      <% end  %>
+      <div class="card-body">
 
-<p>
-  <strong>End Date:</strong>
-  <%= @booking.end_date %>
-</p>
+        <p>
+          <strong>Start Date:</strong>
+          <%= @booking.start_date %>
+        </p>
 
-<p>
-  <strong>Total Price:</strong>
-  <%= @booking.total_price %>
-</p>
+        <p>
+          <strong>End Date:</strong>
+          <%= @booking.end_date %>
+        </p>
 
-<p>
-  <strong>Status:</strong>
-  <%= @booking.status %>
-</p>
+        <p>
+          <strong>Total Price:</strong>
+          <%= @booking.total_price %>
+        </p>
 
-<%= link_to 'Edit', edit_booking_path(@booking) %> |
-<%= link_to 'Back', permits_path %>
+        <p>
+          <strong>Status:</strong>
+          <%= @booking.status %>
+        </p>
+
+          <%= link_to 'Edit', edit_booking_path(@booking) %> |
+          <%= link_to 'Back', permits_path %>
+      </div>
+  </div>
+</div>
