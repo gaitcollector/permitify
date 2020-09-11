@@ -19,7 +19,7 @@
   align-content: center;
   flex-direction: column;
   justify-content: space-between;
-  width: auto;
+  width: 1000px;
   margin-top: 20px
 }
 
@@ -29,19 +29,24 @@
   align-content: center;
   flex-direction: column;
   justify-content: space-between;
-  width: auto
+  width: 1000px;
 }
 
 .card {
   display: flex;
-  align-items: space-between;
+  align-items: center;
   align-content: center;
-  flex-direction: column;
-  border: none
+  justify-content: space-between;
+  width: 400px;
+  padding: 50px
 }
 
 .card th {
-  width: 50%;
+  width: 200px
+}
+
+.card td {
+  width: 200px
 }
 
 .dash-container h1 {

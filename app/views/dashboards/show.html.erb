@@ -25,14 +25,15 @@
                       <tr><th>Booking Status:</th> <td> <%= booking.status %></td></tr>
                       </tbody>
                     </table>
-                    <%= link_to 'Show', booking %> |
-                    <% if booking.user == current_user %>
-                      <%= link_to 'Edit', edit_booking_path(booking) %>
-                    <% end %> |
-                    <% if booking.user == current_user %>
-                      <%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %>
-                    <% end %>
-                </div>
+                    <div id="booking-actions">
+                      <%= link_to 'Show', booking %> |
+                      <% if booking.user == current_user %>
+                        <%= link_to 'Edit', edit_booking_path(booking) %>
+                      <% end %> |
+                      <% if booking.user == current_user %>
+                        <%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %>
+                      <% end %>
+                    </div>
 
 
           <% end %>
@@ -76,7 +77,7 @@
 
 
       </div>
-
+ </div>
     </div>
   </div>
 

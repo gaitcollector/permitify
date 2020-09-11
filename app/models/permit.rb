@@ -1,5 +1,5 @@
 class Permit < ApplicationRecord
-  PERKS = ["travel", "free things", "no curfew", "uniform"]
+  PERKS = ["travel", "free food", "no curfew"]
   validates :name, presence: true
   validates :perks, presence: true
 
