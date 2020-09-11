@@ -1,10 +1,11 @@
-
-.card {
-    margin-bottom: 30px;
-}
-
-.container {
-    margin: 50px;
+.btn-permits {
+    margin-top: 30px;
+    border: none;
+    &:hover {
+        background-color: blue;
+        animation: shake 0.5s;
+        animation-iteration-count: infinite;
+    }
 }
 
 @keyframes shake {
@@ -20,15 +21,3 @@
     90% { transform: translate(1px, 2px) rotate(0deg); }
     100% { transform: translate(1px, -2px) rotate(-1deg); }
   }
-
-  .permit-img, .booking-show-img {
-    animation: shake 0.5s;
-    animation-iteration-count: infinite;
-  }
-.cards {
-    display: grid;
-    grid-template-columns: 300px 300px 300px;
-    gap: 15px;
-    justify-content: center;
-}
-
