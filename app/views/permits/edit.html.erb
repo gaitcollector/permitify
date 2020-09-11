@@ -5,6 +5,7 @@
     <%= simple_form_for @permit do |f|%>
       <%= f.input :name %>
       <%= f.input :description %>
+      <%= f.input :perks, as: :check_boxes, collection: Permit::PERKS, input_html: { multiple: true }, include_hidden: false %>
       <%= f.input :price %>
       <%= f.input :location %>
       <%= f.input :available %>
