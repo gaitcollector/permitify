@@ -1,3 +1,4 @@
+
 .card {
     margin-bottom: 30px;
 }
@@ -24,3 +25,10 @@
     animation: shake 0.5s;
     animation-iteration-count: infinite;
   }
+.cards {
+    display: grid;
+    grid-template-columns: 300px 300px 300px;
+    gap: 15px;
+    justify-content: center;
+}
+

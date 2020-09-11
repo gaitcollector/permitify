@@ -1,3 +1,4 @@
+
 <div class="container">
   <h1>Permit Detail</h1>
 
@@ -34,7 +35,7 @@
         <% if @permit.available %>
             <%= "Available now!" %>
         <% else %>
-             <%= "Not available..." %>
+            <%= "Not available..." %>
         <% end %>
         </p>
 
@@ -45,5 +46,9 @@
           <%= link_to " book permit ", new_permit_booking_path(@permit) %>
         <% end %>
       </div>
+      <%= link_to "[ back ]", permits_path %>
   </div>
 </div>
+
+
+

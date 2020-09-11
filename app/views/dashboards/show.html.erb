@@ -1,3 +1,4 @@
+
 <div class="container">
     <h1>Dashboard</h1>
 
@@ -62,7 +63,7 @@
                       </body>
                   </table>
 
-                  <%= link_to 'Accept', booking_path(booking, booking: {status: "Booked"}), method: :patch, data: { confirm: 'Are you sure?' } %> | 
+                  <%= link_to 'Accept', booking_path(booking, booking: {status: "Booked"}), method: :patch, data: { confirm: 'Are you sure?' } %> |
                   <% if booking.status != "Declined"%>
                     <%= link_to 'Decline', booking_path(booking, booking: {status: "Declined"}), method: :patch, data: { confirm: 'Are you sure?' } %>
                   <% end %>
@@ -70,6 +71,10 @@
               </div>
             </div>
           <% end %>
+
+
         </div>
       </div>
+    <% end %>
+  </div>
 </div>
