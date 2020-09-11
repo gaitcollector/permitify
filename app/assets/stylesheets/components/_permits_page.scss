@@ -1,0 +1,23 @@
+.headings h1 {
+  color: white;
+  text-align: center;
+}
+
+.perks-links {
+  display: flex;
+  justify-content: center;
+  a {
+    background-color: white;
+    padding: 5px 10px;
+    border-radius: 8px;
+  }
+}
+
+.headings {
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+.links {
+  background-color: white;
+}

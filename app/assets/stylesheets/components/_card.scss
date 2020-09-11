@@ -28,8 +28,18 @@
 
 .cards {
     display: grid;
-    grid-template-columns: 300px 300px 300px;
+    grid-template-columns: 300px 300px;
+    width: 50%;
     gap: 15px;
     justify-content: center;
 }
 
+.card img {
+  width: 100%;
+}
+
+.card a {
+  font-size: 1.2rem;
+  margin: 1vh;
+  font-weight: bolder;
+}
