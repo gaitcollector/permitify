@@ -1,17 +1,18 @@
-
-<h1>Permit Listings</h1>
-<div class="perks-links">
-  <% Permit::PERKS.each do |perk| %>
-    <p><%= link_to "Permits with '#{perk}' Perks", "/permits?query=#{perk}&commit=Search" %></p>
-  <% end %>
+<div class="headings">
+  <h1>Permit Listings</h1>
+  <div class="perks-links">
+    <% Permit::PERKS.each do |perk| %>
+      <p class="mr-2"><%= link_to "#{perk.capitalize}", "/permits?query=#{perk}&commit=Search" %></p>
+    <% end %>
+  </div>
 </div>
 
 <div class="cards">
   <% @permits.each do |permit| %>
     <div class="card" style="width: 18rem;">
-      <%= link_to permit.name, permit_path(permit) %>
+      <%= link_to permit.name, permit_path(permit), class:"text-center" %>
       <% if permit.photo.attached? %>
-        <%= cl_image_tag permit.photo.key, height: 100, width: 100, crop: :fill %>
+        <%= cl_image_tag permit.photo.key, width: 240, crop: :fill %>
       <% else %>
         <img src="https://image.shutterstock.com/image-vector/picture-vector-icon-no-image-260nw-1350441335.jpg" class = "img-thumbnail" style="width:100px;height:100px">
       <% end  %>
@@ -52,8 +53,10 @@
   <% end %>
 </div>
 
-<%= link_to '[ list a permit for rent ]', new_permit_path %>
-<%= link_to '[ back to home ]', root_path %>
+<div class="links">
+  <%= link_to '[ list a permit for rent ]', new_permit_path %>
+  <%= link_to '[ back to home ]', root_path %>
+</div>
 
 <div id="map"
      style="width: 100%; height: 600px;"
