@@ -13,3 +13,8 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+body {
+  background-image: url("https://res.cloudinary.com/tiffo/image/upload/v1599798377/ssrss8uyhuxtgxqheesc.png");
+  background-size: cover
+}
