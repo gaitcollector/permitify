@@ -1,0 +1,53 @@
+
+
+.dash-container {
+  display: flex;
+  flex-direction: column;
+  width: 1000px;
+  align-items: center;
+  margin: 100px auto;
+  align-content: center;
+  background-color: white;
+  border-radius: 4px;
+  opacity: 0.7;
+  padding: 5px
+}
+
+.bookings-container {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  flex-direction: column;
+  justify-content: space-between;
+  width: auto;
+  margin-top: 20px
+}
+
+.requests-container {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  flex-direction: column;
+  justify-content: space-between;
+  width: auto
+}
+
+.card {
+  display: flex;
+  align-items: space-between;
+  align-content: center;
+  flex-direction: column;
+  border: none
+}
+
+.card th {
+  width: 50%;
+}
+
+.dash-container h1 {
+  color: black
+}
+
+.dash-container h2 {
+  color: black
+}
