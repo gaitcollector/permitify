@@ -12,7 +12,7 @@
     <div class="card" style="width: 18rem;">
       <%= link_to permit.name, permit_path(permit), class:"text-center" %>
       <% if permit.photo.attached? %>
-        <%= cl_image_tag permit.photo.key, height: 100, width: 100, crop: :fill %>
+        <%= cl_image_tag permit.photo.key, width: 240, crop: :fill %>
       <% else %>
         <img src="https://image.shutterstock.com/image-vector/picture-vector-icon-no-image-260nw-1350441335.jpg" class = "img-thumbnail" style="width:100px;height:100px">
       <% end  %>
