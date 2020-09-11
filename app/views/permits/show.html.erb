@@ -4,7 +4,7 @@
 
   <div class="card border-success m-5" style="max-width: 18rem;">
       <% if @permit.photo.attached? %>
-        <%= cl_image_tag @booking.photo.key, height: 100, width: 100, crop: :fill %>
+        <%= cl_image_tag @permit.photo.key, height: 100, width: 100, crop: :fill %>
       <% else %>
         <img class="booking-show-img" src="https://image.shutterstock.com/image-vector/picture-vector-icon-no-image-260nw-1350441335.jpg", height: 100, width: 100, crop: :fill>
       <% end  %>

@@ -49,8 +49,9 @@ class PermitsController < ApplicationController
   end
 
   def update
-    @permit.user = current_user
     @permit = Permit.find(params[:id])
+    @permit.user = current_user
+    params[:permit][:perks].each {|perk| @permit.perks << perk }
     respond_to do |format|
       if @permit.update(permit_params)
         format.html { redirect_to @permit, notice: 'Permit was successfully updated!' }
