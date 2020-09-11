@@ -1,0 +1,49 @@
+<div class="container">
+  <h1>Permit Detail</h1>
+
+  <div class="card border-success m-5" style="max-width: 18rem;">
+      <% if @permit.photo.attached? %>
+        <%= cl_image_tag @booking.photo.key, height: 100, width: 100, crop: :fill %>
+      <% else %>
+        <img class="booking-show-img" src="https://image.shutterstock.com/image-vector/picture-vector-icon-no-image-260nw-1350441335.jpg", height: 100, width: 100, crop: :fill>
+      <% end  %>
+      <div class="card-body">
+        <p id="notice"><%= notice %></p>
+
+        <p>
+          <strong>Name:</strong>
+          <%= @permit.name %>
+        </p>
+
+        <p>
+          <strong>End Date:</strong>
+          <%= @permit.description %>
+        </p>
+
+        <p>
+          <strong>Price(per day): $</strong>
+          <%= @permit.price %>
+        </p>
+
+        <p>
+          <strong>Location:</strong>
+          <%= @permit.name %>
+        </p>
+
+        <p>
+        <% if @permit.available %>
+            <%= "Available now!" %>
+        <% else %>
+             <%= "Not available..." %>
+        <% end %>
+        </p>
+
+        <% if current_user == @permit.user %>
+          <%= link_to " edit ", edit_permit_path(@permit), class: "card-edit-link" %>
+          <%= link_to " delete ", permit_path(@permit), method: :delete, data: { confirm: "Are you sure?" }, class: "card-remove-link" %>
+        <% else %>
+          <%= link_to " book permit ", new_permit_booking_path(@permit) %>
+        <% end %>
+      </div>
+  </div>
+</div>
