@@ -6,20 +6,20 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-puts "Cleaning database"
+# puts "Cleaning database"
 
-Permit.destroy_all
+# Permit.destroy_all
 
 
-puts "Creating permits"
+# puts "Creating permits"
 
-Permit.create!(
-    name: 'First Permit',
-    description:'blabla',
-    location:'Melb',
-    price: 100,
-    available: true
-)
+# Permit.create!(
+#     name: 'First Permit',
+#     description:'blabla',
+#     location:'Melb',
+#     price: 100,
+#     available: true
+
 
 
 
